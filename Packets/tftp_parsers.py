@@ -19,9 +19,7 @@ from tftp_constants import (
 )
 
 
-# ---------------------------------------------------------------------------
 # Função pública
-# ---------------------------------------------------------------------------
 
 
 def parse_packet(packet: bytes) -> dict:
@@ -70,10 +68,7 @@ def parse_packet(packet: bytes) -> dict:
     return parser(opcode, packet)
 
 
-# ---------------------------------------------------------------------------
 # Funções auxiliares privadas
-# ---------------------------------------------------------------------------
-
 
 def _parse_request(opcode: int, packet: bytes) -> dict:
     """Interpreta um pacote RRQ ou WRQ."""

@@ -1,15 +1,15 @@
 """
-tftp_builders.py — Funções de construção de pacotes TFTP (RFC 1350).
+tftp_builders.py - Funções de construção de pacotes TFTP (RFC 1350).
 
 Cada função recebe parâmetros de alto nível e devolve os bytes prontos
 para envio via socket UDP.
 
 Funções públicas:
-    build_rrq   — Read Request  (opcode 1)
-    build_wrq   — Write Request (opcode 2)
-    build_data  — Data          (opcode 3)
-    build_ack   — Acknowledge   (opcode 4)
-    build_error — Error         (opcode 5)
+    build_rrq - Read Request  (opcode 1)
+    build_wrq - Write Request (opcode 2)
+    build_data - Data          (opcode 3)
+    build_ack - Acknowledge   (opcode 4)
+    build_error - Error         (opcode 5)
 """
 
 import struct
@@ -25,11 +25,7 @@ from tftp_constants import (
     OP_WRQ,
 )
 
-
-# ---------------------------------------------------------------------------
 # Funções públicas
-# ---------------------------------------------------------------------------
-
 
 def build_rrq(filename: str, mode: str = MODE_OCTET) -> bytes:
     """Constrói um pacote RRQ (Read Request).
@@ -181,10 +177,8 @@ def build_error(error_code: int, error_msg: str = "") -> bytes:
     return struct.pack("!HH", OP_ERROR, error_code) + msg_encoded
 
 
-# ---------------------------------------------------------------------------
-# Funções auxiliares privadas
-# ---------------------------------------------------------------------------
 
+# Funções auxiliares privadas
 
 def _validate_request_args(filename: str, mode: str) -> None:
     """Valida os argumentos comuns de RRQ e WRQ."""
