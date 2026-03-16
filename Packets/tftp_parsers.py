@@ -43,7 +43,7 @@ def parse_packet(packet: bytes) -> dict:
         ValueError: Se o pacote for curto demais ou tiver opcode inválido.
 
     Exemplo:
-        >>> from tftp_builders import build_ack
+        >>> from packets.tftp_packets import build_ack
         >>> raw = build_ack(3)
         >>> parse_packet(raw)
         {'opcode': 4, 'block_number': 3}

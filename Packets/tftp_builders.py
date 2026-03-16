@@ -180,6 +180,7 @@ def build_error(error_code: int, error_msg: str = "") -> bytes:
 
 # Funções auxiliares privadas
 
+
 def _validate_request_args(filename: str, mode: str) -> None:
     """Valida os argumentos comuns de RRQ e WRQ."""
     if not filename:
