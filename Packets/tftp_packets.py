@@ -9,14 +9,14 @@ precisam importar. A estrutura interna está dividida em:
     tftp_parsers.py  - função parse_packet para interpretar pacotes
 
 Uso:
-    from tftp_packets import build_rrq, build_wrq, build_data
-    from tftp_packets import build_ack, build_error, parse_packet
-    from tftp_packets import OP_RRQ, OP_DATA, BLOCK_SIZE, ERROR_CODES
+    from packets.tftp_packets import build_rrq, build_wrq, build_data
+    from packets.tftp_packets import build_ack, build_error, parse_packet
+    from packets.tftp_packets import OP_RRQ, OP_DATA, BLOCK_SIZE, ERROR_CODES
 """
 
 # Constantes — re-exportadas de tftp_constants
 
-from tftp_constants import (  # noqa: F401
+from .tftp_constants import (  # noqa: F401
     BLOCK_SIZE,
     ERROR_CODES,
     MODE_NETASCII,
@@ -30,7 +30,7 @@ from tftp_constants import (  # noqa: F401
 
 # Builders — re-exportados de tftp_builders
 
-from tftp_builders import (  # noqa: F401
+from .tftp_builders import (  # noqa: F401
     build_ack,
     build_data,
     build_error,
@@ -41,10 +41,10 @@ from tftp_builders import (  # noqa: F401
 # Parser — re-exportado de tftp_parsers
 
 
-from tftp_parsers import parse_packet  # noqa: F401
+from .tftp_parsers import parse_packet  # noqa: F401
 
 
-# __all__ — define a API pública explicitamente
+# __all__ - define a API pública explicitamente
 
 __all__ = [
     # Opcodes

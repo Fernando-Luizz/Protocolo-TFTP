@@ -5,12 +5,12 @@ Recebe bytes vindos do socket UDP e devolve dicionários com os campos
 de cada tipo de pacote.
 
 Funções públicas:
-    parse_packet — despacha para o parser correto conforme o opcode
+    parse_packet - despacha para o parser correto conforme o opcode
 """
 
 import struct
 
-from tftp_constants import (
+from .tftp_constants import (
     OP_ACK,
     OP_DATA,
     OP_ERROR,

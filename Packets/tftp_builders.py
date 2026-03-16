@@ -14,7 +14,7 @@ Funções públicas:
 
 import struct
 
-from tftp_constants import (
+from .tftp_constants import (
     BLOCK_SIZE,
     ERROR_CODES,
     MODE_OCTET,
@@ -26,6 +26,7 @@ from tftp_constants import (
 )
 
 # Funções públicas
+
 
 def build_rrq(filename: str, mode: str = MODE_OCTET) -> bytes:
     """Constrói um pacote RRQ (Read Request).
@@ -175,7 +176,6 @@ def build_error(error_code: int, error_msg: str = "") -> bytes:
         error_msg = ERROR_CODES.get(error_code, "Unknown error")
     msg_encoded = error_msg.encode("ascii") + b"\x00"
     return struct.pack("!HH", OP_ERROR, error_code) + msg_encoded
-
 
 
 # Funções auxiliares privadas
