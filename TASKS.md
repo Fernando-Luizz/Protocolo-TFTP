@@ -52,7 +52,7 @@ Responsável pelo desenvolvimento do servidor TFTP.
 **Arquivo principal:**
 - `server.py`
 
-## Pessoa 4 — Cliente
+## Gabriel Pepes — Cliente
 
 Responsável pela implementação do cliente TFTP.
 
