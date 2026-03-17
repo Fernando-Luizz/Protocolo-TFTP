@@ -66,3 +66,80 @@ Os componentes representados são:
 
 ### Observação sobre os Testes Locais
 Nos testes locais, o servidor foi executado na **porta 6969** para evitar problemas de permissão de administrador no sistema operacional (portas privilegiadas). Mesmo assim, a arquitetura e a lógica continuam totalmente baseadas no funcionamento padrão do protocolo TFTP, que utiliza oficialmente a **porta 69**.
+
+
+### Como usar
+
+#### Pré-requisitos
+
+- Python 3.x instalado
+- Executar todos os comandos a partir da **raiz do projeto** (`Protocolo-TFTP/`)
+
+---
+
+#### Servidor
+
+```bash
+# Inicia o servidor na porta padrão 6969, servindo o diretório atual
+python server.py
+
+# Especifica porta e diretório base (criado automaticamente se não existir)
+python server.py -p 6969 -d ./arquivos
+```
+
+| Argumento | Padrão | Descrição |
+|---|---|---|
+| `-p`, `--port` | `6969` | Porta UDP em que o servidor escuta |
+| `-d`, `--dir` | `.` | Diretório de onde os arquivos são lidos/gravados |
+
+---
+
+#### Cliente
+
+```bash
+# Download — busca um arquivo do servidor e salva localmente
+python -m packets.client get <arquivo> --host <ip> --port <porta>
+
+# Upload — envia um arquivo local para o servidor
+python -m packets.client put <arquivo> --host <ip> --port <porta>
+```
+
+| Argumento | Padrão | Descrição |
+|---|---|---|
+| `get` / `put` | — | Operação: download ou upload |
+| `<arquivo>` | — | Nome do arquivo a transferir |
+| `--host` | `127.0.0.1` | Endereço IP do servidor |
+| `--port` | `69` | Porta UDP do servidor |
+
+---
+
+#### Exemplo de uso local
+
+Abra dois terminais a partir da raiz do projeto:
+
+**Terminal 1 — iniciar o servidor:**
+```bash
+python server.py -p 6969 -d ./server_files
+```
+
+**Terminal 2 — fazer upload de um arquivo:**
+```bash
+python -m packets.client put arquivo.txt --host 127.0.0.1 --port 6969
+```
+
+**Terminal 2 — fazer download de um arquivo:**
+```bash
+python -m packets.client get arquivo.txt --host 127.0.0.1 --port 6969
+```
+
+---
+
+#### Testes automatizados
+
+```bash
+# Roda todos os testes unitários
+python -m pytest unit_tests/ -v
+
+# Alternativa sem pytest (unittest nativo)
+python -m unittest discover unit_tests/
+```
