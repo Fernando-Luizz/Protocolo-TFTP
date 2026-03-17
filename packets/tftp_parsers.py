@@ -123,7 +123,9 @@ def _parse_ack(opcode: int, packet: bytes) -> dict:
 def _parse_error(opcode: int, packet: bytes) -> dict:
     """Interpreta um pacote ERROR."""
     if len(packet) < 5:
-        raise ValueError("Pacote ERROR malformado: mínimo de 5 bytes esperado.")
+        raise ValueError(
+            "Pacote ERROR malformado: mínimo de 5 bytes esperado."
+        )
 
     _, error_code = struct.unpack("!HH", packet[:4])
     error_msg = packet[4:].rstrip(b"\x00").decode("ascii", errors="replace")

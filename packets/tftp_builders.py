@@ -106,7 +106,8 @@ def build_data(block_number: int, data: bytes) -> bytes:
     """
     if not (1 <= block_number <= 65535):
         raise ValueError(
-            f"block_number deve estar entre 1 e 65535, recebido: {block_number}"
+            "block_number deve estar entre 1 e 65535, "
+            f"recebido: {block_number}"
         )
     if len(data) > BLOCK_SIZE:
         raise ValueError(
@@ -140,7 +141,8 @@ def build_ack(block_number: int) -> bytes:
     """
     if not (0 <= block_number <= 65535):
         raise ValueError(
-            f"block_number deve estar entre 0 e 65535, recebido: {block_number}"
+            "block_number deve estar entre 0 e 65535, "
+            f"recebido: {block_number}"
         )
     return struct.pack("!HH", OP_ACK, block_number)
 
