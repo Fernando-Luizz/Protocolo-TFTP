@@ -53,9 +53,18 @@ def download_file(server_ip, server_port, filename):
                 if len(payload) < BLOCK_SIZE:
                     break
 
+            elif block < expected_block:
+                # pacote duplicado - reenvia ACK
+                ack = build_ack(block)
+                sock.sendto(ack, addr)
+            else:
+                print("[WARN] Bloco fora de ordem ignorado")
+
         elif packet["opcode"] == OP_ERROR:
             print(f"[ERRO] {packet['error_msg']}")
             return
+        else:
+            print("[WARN] Pacote inesperado ignorado")
 
     with open(filename, "wb") as f:
         f.write(file_data)
@@ -80,6 +89,29 @@ def upload_file(server_ip, server_port, filename):
 
     block_number = 0
 
+    # lê primeiro bloco
+    chunk = file.read(BLOCK_SIZE)
+
+    # arquivo vazio
+    if not chunk:
+        try:
+            data, addr = sock.recvfrom(516)
+        except socket.timeout:
+            print("[ERRO] Timeout aguardando ACK inicial")
+            return
+
+        packet = parse_packet(data)
+
+        if packet["opcode"] == OP_ACK and packet["block_number"] == 0:
+            data_pkt = build_data(1, b"")
+            sock.sendto(data_pkt, addr)
+            print("[INFO] Arquivo vazio enviado com sucesso")
+        else:
+            print("[ERRO] Resposta inesperada do servidor")
+
+        file.close()
+        return
+
     while True:
         try:
             data, addr = sock.recvfrom(516)
@@ -102,9 +134,21 @@ def upload_file(server_ip, server_port, filename):
                 if len(chunk) < BLOCK_SIZE:
                     break
 
+            elif ack_block < block_number:
+                print("[WARN] ACK duplicado ignorado")
+
+            else:
+                print("[WARN] ACK fora de ordem ignorado")
+
         elif packet["opcode"] == OP_ERROR:
             print(f"[ERRO] {packet['error_msg']}")
             return
+
+        else:
+            print("[WARN] Pacote inesperado ignorado")
+
+        if len(chunk) == 0:
+            break
 
     file.close()
     print("[OK] Upload concluído")
