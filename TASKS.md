@@ -36,7 +36,7 @@ Responsável pela parte fundamental da comunicação TFTP: a criação e interpr
 **Arquivo principal:**
 - `tftp_packets.py`
 
-## Pessoa 3 — Servidor
+## Gustavo Almada — Servidor
 
 Responsável pelo desenvolvimento do servidor TFTP.
 
