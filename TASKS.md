@@ -2,7 +2,7 @@
 
 Para evitar conflitos no repositório e deixar a participação de cada integrante bem definida, o projeto foi dividido por áreas de responsabilidade. Cada integrante ficará responsável por uma parte principal do sistema e fará suas alterações em branch própria, sempre enviando por pull request.
 
-## Fernando — Infraestrutura, diagramas e documentação
+## Fernando Luiz da Silva Freire — Infraestrutura, diagramas e documentação
 
 Responsável pela organização inicial do projeto.
 
@@ -11,15 +11,17 @@ Responsável pela organização inicial do projeto.
 - configurar o arquivo `.gitignore`;
 - montar a estrutura inicial do `README.md`;
 - produzir os diagramas que serão colocados na documentação:
-  - um diagrama de containers, mostrando a visão geral do sistema;
+  - um diagrama de contexto, mostrando a visão geral do sistema;
+  - um diagrama de container, detalhando as partes principais da aplicação  (a separação entre o Cliente TFTP e o Servidor TFTP).
   - um diagrama de componentes, mostrando a estrutura interna da aplicação.
+- revisar a aprovar Pull Request.
 
 **Arquivos principais:**
 - `README.md`
 - `.gitignore`
 - imagens dos diagramas
 
-## Pessoa 2 — Base do protocolo
+## Ryan Da Silva Marinho — Base do protocolo
 
 Responsável pela parte fundamental da comunicação TFTP: a criação e interpretação dos pacotes enviados pela rede.
 
@@ -36,7 +38,7 @@ Responsável pela parte fundamental da comunicação TFTP: a criação e interpr
 **Arquivo principal:**
 - `tftp_packets.py`
 
-## Gustavo Almada — Servidor
+## Gustavo Morais De Almada — Servidor
 
 Responsável pelo desenvolvimento do servidor TFTP.
 
@@ -52,7 +54,7 @@ Responsável pelo desenvolvimento do servidor TFTP.
 **Arquivo principal:**
 - `server.py`
 
-## Gabriel Pepes — Cliente
+## Gabriel Pepes Moda — Cliente
 
 Responsável pela implementação do cliente TFTP.
 
@@ -66,7 +68,7 @@ Responsável pela implementação do cliente TFTP.
 **Arquivo principal:**
 - `client.py`
 
-## Pessoa 5 — Testes, padronização e revisão final
+## Wanderberg De Melo Santana — Testes, padronização e revisão final
 
 Responsável pela validação do projeto e pelos ajustes finais.
 
