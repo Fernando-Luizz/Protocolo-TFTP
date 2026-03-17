@@ -1,7 +1,7 @@
 import socket
 import argparse
 
-from packets.tftp_packets import (
+from  .tftp_packets import (
     build_rrq,
     build_wrq,
     build_ack,
